@@ -1,4 +1,4 @@
-class API::ConfigsController < ApplicationController
+class Api::ConfigsController < ApplicationController
   before_action :set_config, only: %i[ show update destroy ]
 
   # GET /configs
