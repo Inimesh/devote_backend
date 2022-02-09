@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  round_up_to: 1
+  percentage: false
+  round_up_cap: 1
+
+two:
+  round_up_to: 1
+  percentage: false
+  round_up_cap: 1
