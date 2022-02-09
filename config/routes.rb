@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resources :configs
   end
 
+  scope :api, defaults: { format: :json } do
+    devise_for :users
+  end
+
   # Defines the root path route ("/")
   # root "articles#index"
 end
