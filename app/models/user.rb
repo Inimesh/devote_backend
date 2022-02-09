@@ -15,4 +15,8 @@ class User < ApplicationRecord
                 exp: 60.days.from_now.to_i },
               Rails.application.secrets.secret_key_base)
   end
+
+  json.user do |json|
+    json.partial! 'users/user', user: current_user
+  end
 end
