@@ -1,15 +1,19 @@
 class ApplicationController < ActionController::API
 
-  protect_from_forgery with: :null_session
+  # protect_from_forgery with: :null_session
 
   respond_to :json
 
   before_action :underscore_params!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   private
-  
+
+  def underscore_params!
+    params.deep_transform_keys!(&:underscore)
+  end
+
   def authenticate_user!(options = {})
     head :unauthorized unless signed_in?
   end
