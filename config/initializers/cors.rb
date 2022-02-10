@@ -5,13 +5,13 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
-Rails.application.config.middleware.insert_before 0, Rack::Cors do
+Rails.application.config.middleware.insert_before 0, Rack::Cors do 
   allow do
-    origins "http://localhost:3001" # Change this for the actual url in production
-
-    resource "*",
+    origins 'http://localhost:3000'
+  
+    resource '*',
       headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      methods: [:get, :post, :put, :patch, :delete, :options, :head],
       credentials: true
   end
 end
