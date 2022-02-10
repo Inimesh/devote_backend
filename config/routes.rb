@@ -6,9 +6,12 @@ Rails.application.routes.draw do
     resources :configs
     resources :transactions
     resources :receiver_accounts
-
+    
+    resources :users, only: [:create, :show]
+    post '/login',    to: 'sessions#create'
+    post '/logout',   to: 'sessions#destroy'
+    get '/logged_in', to: 'sessions#is_logged_in?'
   end
-
   # Defines the root path route ("/")
   # root "articles#index"
 end
