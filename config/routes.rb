@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     # TODO Resource routes go in here
     resources :configs
+    resources :receiver_accounts
   end
 
   # Defines the root path route ("/")
