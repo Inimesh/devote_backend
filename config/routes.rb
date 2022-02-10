@@ -3,10 +3,13 @@ Rails.application.routes.draw do
   namespace :api do
     # TODO Resource routes go in here
     resources :configs
+
     resources :users, only: [:create, :show]
     post '/login',    to: 'sessions#create'
     post '/logout',   to: 'sessions#destroy'
     get '/logged_in', to: 'sessions#is_logged_in?'
+
+    resources :receiver_accounts
   end
 
   
