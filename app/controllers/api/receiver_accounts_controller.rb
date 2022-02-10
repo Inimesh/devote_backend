@@ -1,4 +1,4 @@
-class ReceiverAccountsController < ApplicationController
+class Api::ReceiverAccountsController < ApplicationController
   before_action :set_receiver_account, only: %i[ show update destroy ]
 
   # GET /receiver_accounts
@@ -10,7 +10,9 @@ class ReceiverAccountsController < ApplicationController
 
   # GET /receiver_accounts/1
   def show
-    render json: @receiver_account
+    # @receiver_account = set_receiver_account
+
+    render json: @receiver_account.slice(:account_name)
   end
 
   # POST /receiver_accounts
