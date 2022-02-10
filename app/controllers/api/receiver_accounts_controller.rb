@@ -10,8 +10,6 @@ class Api::ReceiverAccountsController < ApplicationController
 
   # GET /receiver_accounts/1
   def show
-    # @receiver_account = set_receiver_account
-
     render json: @receiver_account.slice(:account_name)
   end
 
