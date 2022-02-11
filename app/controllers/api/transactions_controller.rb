@@ -5,9 +5,6 @@ class Api::TransactionsController < ApplicationController
   # in React => axios http://localhost:3000/api/transactions?user_id={user.id} where user.id is the current user
   # to grab all user transactions
   def index
-    p "****"
-    p params[:user_id]
-    p "****"
     if params[:user_id]
       @user = User.find(params[:user_id])
       render json: @user.transactions
