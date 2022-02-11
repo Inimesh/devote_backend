@@ -14,6 +14,11 @@ class Api::TransactionsController < ApplicationController
     end
   end
 
+  def new
+    @transaction = Transaction.new
+    render "new"
+  end
+
   # GET /transactions/1
   def show
     render json: @transaction
@@ -24,7 +29,7 @@ class Api::TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
 
     if @transaction.save
-      render json: @transaction, status: :created, location: @transaction
+      render json: @transaction, status: :created, location: api_transactions_url
     else
       render json: @transaction.errors, status: :unprocessable_entity
     end

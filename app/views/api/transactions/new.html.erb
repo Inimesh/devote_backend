@@ -1,0 +1,16 @@
+<h1>New Transaction</h1>
+
+<form action="/api/transactions" accept-charset="UTF-8" method="post">
+  amount
+  <input type="number" step=".01" name="transaction[amount]" id="">
+  round_up
+  <input type="number" step=".01" name="transaction[round_up]" id="">
+  name
+  <input type="text" name="transaction[name]" id="">
+  user_id
+  <input type="number" name="transaction[user_id]" id="">
+
+  <div>
+    <input type="submit" name="commit" value="Create Transaction" data-disable-with="Create Transaction">
+  </div>
+</form>
