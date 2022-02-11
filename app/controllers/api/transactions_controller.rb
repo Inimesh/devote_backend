@@ -1,11 +1,20 @@
 class Api::TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[ show update destroy ]
 
-  # GET /transactions
+  # GET api/transactions
+  # in React => axios http://localhost:3000/api/transactions?user_id={user.id} where user.id is the current user
+  # to grab all user transactions
   def index
-    @transactions = Transaction.all
-
-    render json: @transactions
+    p "****"
+    p params[:user_id]
+    p "****"
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      render json: @user.transactions
+    else
+      @transactions = Transaction.all
+      render json: @transactions
+    end
   end
 
   # GET /transactions/1

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_11_105109) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_11_144816) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,9 +26,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_11_105109) do
     t.string "account_name"
     t.integer "account_no"
     t.integer "sort_code"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_receiver_accounts_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -47,7 +48,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_11_105109) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "config_id"
+    t.index ["config_id"], name: "index_users_on_config_id"
   end
 
+  add_foreign_key "receiver_accounts", "users"
   add_foreign_key "transactions", "users"
+  add_foreign_key "users", "configs"
 end
