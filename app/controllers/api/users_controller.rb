@@ -4,7 +4,7 @@ class Api::UsersController < ApplicationController
     @user = User.find(params[:id])
       if @user
         render json: {
-        user: @user
+        username: @user.username
       }
       else
         render json: {
