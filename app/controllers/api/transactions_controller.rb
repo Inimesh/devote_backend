@@ -7,7 +7,7 @@ class Api::TransactionsController < ApplicationController
   def index
     if params[:user_id]
       @user = User.find(params[:user_id])
-      render json: @user.transactions
+      render json: @user.transactions.order('created_at DESC')
     else
       @transactions = Transaction.all
       render json: @transactions
