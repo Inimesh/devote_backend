@@ -1,11 +1,22 @@
 class Api::TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[ show update destroy ]
 
-  # GET /transactions
+  # GET api/transactions
+  # in React => axios http://localhost:3000/api/transactions?user_id={user.id} where user.id is the current user
+  # to grab all user transactions
   def index
-    @transactions = Transaction.all
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      render json: @user.transactions
+    else
+      @transactions = Transaction.all
+      render json: @transactions
+    end
+  end
 
-    render json: @transactions
+  def new
+    @transaction = Transaction.new
+    render "new"
   end
 
   # GET /transactions/1
@@ -18,7 +29,7 @@ class Api::TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
 
     if @transaction.save
-      render json: @transaction, status: :created, location: @transaction
+      render json: @transaction, status: :created, location: api_transactions_url
     else
       render json: @transaction.errors, status: :unprocessable_entity
     end
@@ -46,6 +57,6 @@ class Api::TransactionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def transaction_params
-      params.require(:transaction).permit(:amount, :round_up)
+      params.require(:transaction).permit(:amount, :round_up, :name, :user_id)
     end
 end
