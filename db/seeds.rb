@@ -28,7 +28,7 @@ users.each do |user|
   5.times do
     transaction = Transaction.new(amount: BigDecimal(Faker::Commerce.price(range: 5.0..200.0, as_string: true)), user_id: user.id)
     round_up = BigDecimal(transaction.amount.ceil.to_s) - transaction.amount
-    round_up = nil if round_up <= 0 || round_up >= 0.50
+    round_up = nil if round_up <= 0
     transaction.round_up = round_up
     if transaction.amount <= 35
       transaction.name = vendors[:small].sample
