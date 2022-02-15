@@ -18,7 +18,7 @@ class Api::ReceiverAccountsController < ApplicationController
     @receiver_account = ReceiverAccount.new(receiver_account_params)
 
     if @receiver_account.save
-      render json: @receiver_account, status: :created, location: @receiver_account
+      render json: @receiver_account, status: :created, location: api_receiver_accounts_url
     else
       render json: @receiver_account.errors, status: :unprocessable_entity
     end
