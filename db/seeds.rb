@@ -26,6 +26,11 @@ config1 = Config.new(round_up_to: 1, percentage: false, user_id: user1.id)
 config2 = Config.new(round_up_to: 3, percentage: true, user_id: user2.id)
 config1.save
 config2.save
+# add receiver account savings
+receiver_account1 = ReceiverAccount.new(account_name: "Savings", user_id: user1.id)
+receiver_account2 = ReceiverAccount.new(account_name: "Savings", user_id: user2.id)
+receiver_account1.save
+receiver_account2.save
 
 users = User.all
 
