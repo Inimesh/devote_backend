@@ -18,7 +18,7 @@ class Api::ConfigsController < ApplicationController
     @config = Config.new(config_params)
 
     if @config.save
-      render json: @config, status: :created, location: @config
+      render json: @config, status: :created, location: @api_config_url
     else
       render json: @config.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class Api::ConfigsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def config_params
-      params.require(:config).permit(:round_up_to, :percentage, :round_up_cap)
+      params.require(:config).permit(:round_up_to, :percentage, :round_up_cap, :user_id)
     end
 end
