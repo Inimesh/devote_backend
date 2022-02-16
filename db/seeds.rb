@@ -16,11 +16,16 @@ vendors = {
   medium: ["Sainsburys", "M&S", "Waitrose", "Argos", "Pizza Pilgrims"],
   large: ["Amazon", "John Lewis", "Currys", "Asos", "Selfridges"]
 }
-
+# create users
 user1 = User.new(username: "John Smith", email: "johnsmith@mail.com", password: "password", password_confirmation: "password")
 user2 = User.new(username: "Mary Williams", email: "marywilliams@mail.com", password: "password", password_confirmation: "password")
 user1.save
 user2.save
+# add configs
+config1 = Config.new(round_up_to: 1, percentage: false, user_id: user1.id)
+config2 = Config.new(round_up_to: 3, percentage: true, user_id: user2.id)
+config1.save
+config2.save
 
 users = User.all
 
@@ -29,6 +34,12 @@ users.each do |user|
     transaction = Transaction.new(amount: BigDecimal(Faker::Commerce.price(range: 5.0..200.0, as_string: true)), user_id: user.id)
     round_up = BigDecimal(transaction.amount.ceil.to_s) - transaction.amount
     round_up = nil if round_up <= 0
+
+    if user.config.percentage
+      round_up = (transaction.amount * user.config.round_up_to)/100.0
+      round_up = round_up.round(2)
+    end
+
     transaction.round_up = round_up
     if transaction.amount <= 35
       transaction.name = vendors[:small].sample
