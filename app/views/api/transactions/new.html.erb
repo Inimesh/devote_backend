@@ -1,16 +1,32 @@
-<h1>New Transaction</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>New Transaction</h1>
 
-<form action="/api/transactions" accept-charset="UTF-8" method="post">
-  amount
-  <input type="number" step=".01" name="transaction[amount]" id="">
-  <%# round_up
-  <input type="number" step=".01" name="transaction[round_up]" id=""> %>
-  name
-  <input type="text" name="transaction[name]" id="">
-  Bank Card Number
-  <input type="number" name="transaction[user_id]" id="">
+  <form action="/api/transactions" accept-charset="UTF-8" method="post">
+    <div class="form-group">
+      Amount to Pay:
+      <input class="form-control" type="number" step=".01" name="transaction[amount]" id="">
+      Vendor name:
+      <input type="text" name="transaction[name]" id="">
+      Bank Card Number:
+      <input type="number" name="transaction[user_id]" id="">
+      <br />
+      <br />
+      <div>
+        <input type="submit" name="commit" value="Create Transaction" data-disable-with="Create Transaction">
+      </div>
+    </div>  
+  </form>
+</body>
+</html>
 
-  <div>
-    <input type="submit" name="commit" value="Create Transaction" data-disable-with="Create Transaction">
-  </div>
-</form>
+
+
+
