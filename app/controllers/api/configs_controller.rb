@@ -1,44 +1,48 @@
-class Api::ConfigsController < ApplicationController
-  before_action :set_config, only: %i[ show update destroy ]
+# frozen_string_literal: true
 
-  # GET /configs
-  def index
-    @configs = Config.all
+module Api
+  class ConfigsController < ApplicationController
+    before_action :set_config, only: %i[show update destroy]
 
-    render json: @configs
-  end
+    # GET /configs
+    def index
+      @configs = Config.all
 
-  # GET /configs/1
-  def show
-    render json: @config
-  end
-
-  # POST /configs
-  def create
-    @config = Config.new(config_params)
-
-    if @config.save
-      render json: @config, status: :created, location: @api_config_url
-    else
-      render json: @config.errors, status: :unprocessable_entity
+      render json: @configs
     end
-  end
 
-  # PATCH/PUT /configs/1
-  def update
-    if @config.update(config_params)
+    # GET /configs/1
+    def show
       render json: @config
-    else
-      render json: @config.errors, status: :unprocessable_entity
     end
-  end
 
-  # DELETE /configs/1
-  def destroy
-    @config.destroy
-  end
+    # POST /configs
+    def create
+      @config = Config.new(config_params)
 
-  private
+      if @config.save
+        render json: @config, status: :created, location: @api_config_url
+      else
+        render json: @config.errors, status: :unprocessable_entity
+      end
+    end
+
+    # PATCH/PUT /configs/1
+    def update
+      if @config.update(config_params)
+        render json: @config
+      else
+        render json: @config.errors, status: :unprocessable_entity
+      end
+    end
+
+    # DELETE /configs/1
+    def destroy
+      @config.destroy
+    end
+
+    private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_config
       @config = Config.find(params[:id])
@@ -48,4 +52,5 @@ class Api::ConfigsController < ApplicationController
     def config_params
       params.require(:config).permit(:round_up_to, :percentage, :round_up_cap, :user_id)
     end
+  end
 end

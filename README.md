@@ -1,24 +1,31 @@
-# README
+# Devote
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project by
+ *Inigo Meshoulam
+ *Christopher Webb
+ *Ibrahim Chowdhury
+ *Sarah Dousse
+ *Francesco Colloto 
 
-Things you may want to cover:
+We used Ruby on rails for our backend and React for our frontend(https://github.com/Inimesh/devote_frontend)
 
-* Ruby version
+We decided to use rails for it's auto generated test environments, and it's something we previously learnt on the course so it's sense famililarity
 
-* System dependencies
+* Ruby version: ruby 3.0.0
+* RVM version : rvm 1.29.12
 
-* Configuration
+##Setting up the application
+    ``` git clone https://github.com/Inimesh/devote_backend.git
+        cd devote_backend
+        bundle install ``` 
 
-* Database creation
 
-* Database initialization
+* Database creation and initialization
+    bin/rails db:create
+    bin/rails db:migrate
 
 * How to run the test suite
+    ``` rspec ```  to run all test suites
+    To run the specific test suites
+    ```rspec example_file_name``` 
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
